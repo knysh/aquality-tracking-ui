@@ -86,4 +86,24 @@ describe('Application API:', () => {
       });
       return expect(newResult.id).toBeDefined('Test Result was not created');
   });
+
+  const expectedQuestion = {
+    approver_id: 1,
+    answer: 'answer',
+    category_id: 1,
+    creator_id: 1,
+    max_qualification_id: 2,
+    min_qualification_id: 1,
+    question: 'question'
+  };
+
+  it('create question', async () => {
+    const question = await projectHelper.editorAPI.createQualificationQuestion(expectedQuestion);
+    return expect(question.id).toBeDefined('qualification question if not created');
+  });
+
+  /*fit('get question', async () => {
+    const question = await projectHelper.editorAPI.getQualificationQuestion(expectedQuestion);
+    return expect(question.id).toBeDefined('qualification question if not found');
+  });*/
 });

@@ -6,6 +6,7 @@ import { Milestone } from '../../../src/app/shared/models/milestone';
 import { TestResult } from '../../../src/app/shared/models/test-result';
 import { BaseAPI } from './base.api';
 import { Issue } from '../../../src/app/shared/models/issue';
+import { QualificationQuestion } from '../../../src/app/shared/models/qualification/qualificationQuestion';
 
 enum Endpoints {
     suite = '/suite',
@@ -16,7 +17,8 @@ enum Endpoints {
     testresult = '/testresult',
     testSteps = '/test/steps',
     testToSuite = '/testToSuite',
-    issue = '/issues'
+    issue = '/issues',
+    qualificationQuestion = '/qualification/question'
 }
 
 export class EditorAPI extends BaseAPI {
@@ -87,6 +89,14 @@ export class EditorAPI extends BaseAPI {
         issue.project_id = this.project.id;
         issue.creator_id = 1;
         return this.sendPost(Endpoints.issue, undefined, issue);
+    }
+
+    public async createQualificationQuestion(qualificationQuestion: QualificationQuestion): Promise<QualificationQuestion> {
+        return this.sendPost(Endpoints.qualificationQuestion, undefined, qualificationQuestion);
+    }
+
+    public async getQualificationQuestion(qualificationQuestion: QualificationQuestion): Promise<QualificationQuestion> {
+        return this.sendGet(Endpoints.qualificationQuestion, qualificationQuestion);
     }
 
     public async addSuiteToMilestone(milestoneName: string, suiteName: string) {

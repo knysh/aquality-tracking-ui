@@ -14,7 +14,7 @@ enum Endpoints {
     apiToken = '/project/apiToken',
     projectPermission = '/users/permissions',
     users = '/users',
-    testrun = '/testrun',
+    testrun = '/testrun'
 }
 
 export class UserAPI extends BaseAPI {
